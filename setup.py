@@ -1,9 +1,9 @@
 from distutils.core import setup
 
 setup(
-  name = 'korona',
-  packages = ['korona'],
-  version = '0.26',
+  name = 'korokoro',
+  packages = ['korokoro'],
+  version = '0.27',
   license='GNU GPLv3',
   description = 'A Python pingpong table Korean VS Romantic',
   author = 'seonghyeon yoon',

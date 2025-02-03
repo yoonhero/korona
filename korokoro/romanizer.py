@@ -1,8 +1,8 @@
 import re
 import unicodedata
 
-from korona.syllable import Syllable
-from korona.pronouncer import Pronouncer
+from korokoro.syllable import Syllable
+from korokoro.pronouncer import Pronouncer
 
 '''
 ### Transcribing vowels ###

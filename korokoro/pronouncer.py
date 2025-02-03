@@ -1,4 +1,4 @@
-from korona.syllable import Syllable
+from korokoro.syllable import Syllable
 
 double_consonant_final = {
     'ᆪ': ('ᆨ', 'ᆺ'),

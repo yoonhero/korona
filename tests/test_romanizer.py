@@ -1,5 +1,5 @@
 import pytest
-from korona.romanizer import Romanizer
+from korokoro.romanizer import Romanizer
 
 
 def romanize(text):
