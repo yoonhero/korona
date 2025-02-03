@@ -1,4 +1,4 @@
-from korean_romanizer.syllable import Syllable
+from korona.syllable import Syllable
 
 double_consonant_final = {
     'ᆪ': ('ᆨ', 'ᆺ'),

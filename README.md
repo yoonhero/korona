@@ -1,21 +1,11 @@
-# korean-romanizer
-korean-romanizer is a python module that romanizes Korean text in Hangul into its alphabet equivalent.
+# korona
 
-It currently follows the [Revised Romanization of Korean](https://www.korean.go.kr/front_eng/roman/roman_01.do) rule developed by the National Institute of Korean Language, the official romanization system being used in the Republic of Korea.
+Why does romantizer really matter?
 
+-   ko->ro: good for teach korean to engl-ish culture or get great name for project.
+-   ro->ko: prevent korea citizen from blaming too seriously in korean-cypher.(which o1 can actually understand)
 
-## Usage
+### Neat Technical Hack
 
-### Installation
-```bash
-pip install korean_romanizer
-```
-
-### Basic Usage
-```python
-from korean_romanizer.romanizer import Romanizer
-
-r = Romanizer("안녕하세요")
-r.romanize() 
-# returns 'annyeonghaseyo'
-```
+-   ko->ro: just following `korean.go.kr`'s textbook
+-   ro->ko: probably hard (e.g. sarang -> 사랑 or 살앙)

@@ -1,7 +1,7 @@
 import re
 
-from korean_romanizer.syllable import Syllable
-from korean_romanizer.pronouncer import Pronouncer
+from korona.syllable import Syllable
+from korona.pronouncer import Pronouncer
 
 '''
 ### Transcribing vowels ###
@@ -121,7 +121,6 @@ class Romanizer(object):
                 else:
                     # s is a full syllable
                     _romanized += onset[s.initial] + vowel[s.medial] + coda[s.final]
-
             else:
                 _romanized += char
 
