@@ -1,4 +1,5 @@
 import re
+import unicodedata
 
 from korona.syllable import Syllable
 from korona.pronouncer import Pronouncer
@@ -103,24 +104,23 @@ class Romanizer(object):
 
     def romanize(self):
         pronounced = Pronouncer(self.text).pronounced
-        hangul = r"[가-힣ㄱ-ㅣ]"
+        hangul = r"[ㄱ-힣ᄀ-ㅣ]"
         _romanized = ""
         for char in pronounced:
             if (re.match(hangul, char)):
                 s = Syllable(char)
 
-                if not s.medial and not s.final:
-                    # s is NOT a full syllable (e.g. characters)
-                    # if onset.get(chr(s.initial)):
-                    #     _romanized += onset[chr(s.initial)]
-                    # elif vowel.get(chr(s.initial)):
-                    #     _romanized += vowel[chr(s.initial)]
-                    # else:
-                    #    _romanized += char
-                    _romanized += char
+                if int(bool(s.medial)) + int(bool(s.final)) + int(bool(s.initial)) < 2: # lack to be complete word.
+                    bag = dict(vowel, **onset) # 종성만 있는 경우는 불가
+                    if char not in bag.keys():
+                        char = unicodedata.normalize('NFKC', char)
+                    _romanized += bag[char]
+                    if char == "ᄋ": # 자른 홑자음에 대해서도 이를 적용하기에는 대부분 이는 줄임말에 사용되기에 필요도가 떨어질 것이라고 생각
+                        _romanized += "ieung"
                 else:
-                    # s is a full syllable
-                    _romanized += onset[s.initial] + vowel[s.medial] + coda[s.final]
+                    _romanized += onset[s.initial] + vowel[s.medial]
+                    if s.final in coda.keys(): # 맞춤법을 틀린 경우는 어쩔 수 없답니다 ^^
+                        _romanized += coda[s.final]
             else:
                 _romanized += char
 

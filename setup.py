@@ -1,15 +1,14 @@
 from distutils.core import setup
 
 setup(
-  name = 'korean_romanizer',
-  packages = ['korean_romanizer'],
-  version = '0.25',
+  name = 'korona',
+  packages = ['korona'],
+  version = '0.26',
   license='GNU GPLv3',
-  description = 'A Python library for Korean romanization',
-  author = 'Ilkyu Ju',
-  author_email = 'ju.ilkyu@gmail.com',
-  url = 'https://github.com/osori/korean-romanizer',
-  download_url = 'https://github.com/osori/korean-romanizer/archive/0.25.tar.gz',
+  description = 'A Python pingpong table Korean VS Romantic',
+  author = 'seonghyeon yoon',
+  author_email = 'yoonhero06@naver.com',
+  url = 'https://github.com/yoonhero/korona',
   keywords = ['Korean', 'Romanization', 'Transliteration'],
   classifiers=[
     'Development Status :: 3 - Alpha',

@@ -3,3 +3,8 @@
 .cache/v/cache/lastfailed
 node_modules/*
 public/build/*
+
+*error*
+
+build/
+*.egg-info/

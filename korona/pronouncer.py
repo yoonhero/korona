@@ -100,9 +100,15 @@ class Pronouncer(object):
                     else:
                         if (syllable.final == 'ᇂ'):
                             syllable.final = None
+                        else:
+                            syllable.final = without_ᄒ[syllable.final] # easy error handle but maybe not correct..?
+                            
                 else:
                     if (syllable.final == 'ᇂ'):
                         syllable.final = None
+                    else:
+                        syllable.final = without_ᄒ[syllable.final]
+
             # 6. 겹받침이 모음으로 시작된 조사나 어미, 접미사와 결합되는 경우에는,
             # 뒤엣것만을 뒤 음절 첫소리로 옮겨 발음한다.(이 경우, ‘ㅅ’은 된소리로 발음함.)
             if syllable.final in double_consonant_final and next_syllable.initial == NULL_CONSONANT:
@@ -119,5 +125,17 @@ class Pronouncer(object):
                     next_syllable.initial = next_syllable.final_to_initial(
                         syllable.final)
                     syllable.final = None
+
+            if syllable.final in double_consonant_final.keys():
+                double_consonant = double_consonant_final[syllable.final]
+                # 제11항  겹받침 'ㄺ, ㄻ, ㄿ'은 어말 또는 자음 앞에서 각각 [ㄱ, ㅁ, ㅂ]으로 발음한다.
+                if double_consonant[0] == 'ㄹ' and double_consonant[1] in ['ㄱ', 'ㅁ', 'ㅍ']:
+                    syllable.final = double_consonant[1]
+                # 제10항  겹받침 'ㄳ', 'ㄵ', 'ㄼ, ㄽ, ㄾ', 'ㅄ'은 어말 또는 자음 앞에서 각각 [ㄱ, ㄴ, ㄹ, ㅂ]으로 발음한다.
+                # 다만, ‘밟-’은 자음 앞에서 [밥]으로 발음하고, ‘넓-’은 다음과 같은 경우에 [넙]으로 발음한다.
+                elif ( double_consonant == 'ㄼ') and ((syllable=="밟" and next_syllable.initial != NULL_CONSONANT)  or (syllable=="넓") ):
+                    syllable.final = double_consonant[1]
+                elif double_consonant in ['ㄳ', 'ㄵ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㅄ']:
+                    syllable.final = double_consonant[0]
 
         return self._syllables
